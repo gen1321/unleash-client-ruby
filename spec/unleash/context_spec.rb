@@ -120,4 +120,17 @@ RSpec.describe Unleash::Context do
     expect(context.get_by_name('fancy')).to eq('polarbear')
     expect(context.get_by_name('Fancy')).to eq('polarbear')
   end
+
+  it "when resolving a non existent property" do
+    params = {
+      'user_id' => '123',
+      'sessionId' => 'verylongsesssionid',
+      'properties' => {
+        'fancy' => 'polarbear'
+      }
+    }
+    context = Unleash::Context.new(params)
+    expect(context.get_by_name('doesnt_exist')).to eq(nil)
+    expect(context.get_by_name('doesntExist')).to eq(nil)
+  end
 end

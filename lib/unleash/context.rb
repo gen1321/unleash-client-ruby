@@ -28,7 +28,7 @@ module Unleash
       if ATTRS.include? normalized_name
         self.send(normalized_name)
       else
-        self.properties.fetch(normalized_name)
+        self.properties.fetch(normalized_name, nil)
       end
     end
 
