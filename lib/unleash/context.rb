@@ -29,7 +29,7 @@ module Unleash
         self.send(normalized_name)
       else
         self.properties.fetch(normalized_name) {
-          |key| self.properties.fetch(name.to_sym, nil)
+          || self.properties.fetch(name.to_sym, nil)
         }
       end
     end
