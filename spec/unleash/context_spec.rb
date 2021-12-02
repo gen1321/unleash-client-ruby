@@ -104,7 +104,8 @@ RSpec.describe Unleash::Context do
       'user_id' => '123',
       'sessionId' => 'verylongsesssionid',
       'properties' => {
-        'fancy' => 'polarbear'
+        'fancy' => 'polarbear',
+        'customField' => 'somethingUnique'
       }
     }
     context = Unleash::Context.new(params)
@@ -119,6 +120,7 @@ RSpec.describe Unleash::Context do
     expect(context.get_by_name(:fancy)).to eq('polarbear')
     expect(context.get_by_name('fancy')).to eq('polarbear')
     expect(context.get_by_name('Fancy')).to eq('polarbear')
+    expect(context.get_by_name('customField')).to eq('somethingUnique')
   end
 
   it "when resolving a non existent property" do
